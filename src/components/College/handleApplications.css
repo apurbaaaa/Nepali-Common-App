@@ -1,0 +1,28 @@
+.application-upload-form {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .application-upload-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .application-upload-form input, .application-upload-form textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .application-upload-form button {
+    padding: 10px 20px;
+    background-color: #1234ba;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
