@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Login from './components/Login/login'; // Ensure paths are correctly cased
 import Signup from './components/SignUp/signup'; // Ensure paths are correctly cased
 import College from './components/College/college'; // Ensure paths are correctly cased
-import HandleApplication from './components/College/handleApplications'; // Corrected import
+import HandleApplication from './components/College/handleApplications';
+import UniversityPage from './components/student/UniversityPage';
+import ProfilePage from './components/student/MyProfile';
 
 function App() {
   return (
@@ -16,7 +18,9 @@ function App() {
         {/* Dashboards */}
         <Route path="/student-dashboard" element={<Student />} />
         <Route path="/college-dashboard" element={<College />} />
-        <Route path="/handle-applications" element={<HandleApplication />} /> {/* Corrected Route for HandleApplication */}
+        <Route path="/university-details" element={<UniversityPage />} />
+        <Route path="/handle-applications" element={<HandleApplication />} /> 
+        <Route path="/my-profile" element={<ProfilePage />} />
       </Routes>
     </Router>
   );

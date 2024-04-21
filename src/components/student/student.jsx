@@ -1,7 +1,42 @@
 import React from "react";
 import './student.css'
 import UniversityTable from "./AddPrograms";
-
+import MyCard from "./card";
+const uni = [
+  {
+      name: "University of Example",
+      image: "https://example.com/image1.jpg",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum quam vel ipsum efficitur, eu mollis nunc feugiat.",
+      requirementsLines: [
+          "Minimum GPA: 3.5",
+          "SAT Score: 1300",
+          "TOEFL Score: 90",
+          "Letter of Recommendation: 2",
+      ]
+  },
+  {
+      name: "Another University",
+      image: "https://example.com/image2.jpg",
+      description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi.",
+      requirementsLines: [
+          "Minimum GPA: 3.0",
+          "ACT Score: 28",
+          "IELTS Score: 7.0",
+          "Personal Statement Required",
+      ]
+  },
+  {
+      name: "University of Ipsum",
+      image: "https://example.com/image3.jpg",
+      description: "Vivamus non libero ut mauris fermentum tristique. Vestibulum nec dui a nisi dictum gravida.",
+      requirementsLines: [
+          "Minimum GPA: 3.2",
+          "GRE Score: 310",
+          "Portfolio Required",
+          "Interview Process",
+      ]
+  }
+];
 const programs = [
   {
     name: 'Adelphi University',
@@ -35,25 +70,14 @@ const programs = [
   },
 ];
 
-const Widget = ({ title, subtitle, icon }) => {
-  return (
-    <div className="widget">
-      <div className="widget__icon">
-        <i className={icon} />
-      </div>
-      <div className="widget__content">
-        <h3 className="widget__title">{title}</h3>
-        <p className="widget__subtitle">{subtitle}</p>
-      </div>
-    </div>
-  );
-};
-
 function Student() {
   const [activeTab, setActiveTab] = React.useState("myApplication");
 
   return (
     <div className="dashboard-container">
+        <header className="dashboard-header">
+          <p>Welcome to the Common App</p>
+        </header>
         <nav className="tab-nav">
             <button
                 className={`tab-nav-button ${activeTab === "myApplication" && "active"}`} onClick={() => setActiveTab("myApplication")}>
@@ -64,46 +88,28 @@ function Student() {
                 Add Program
             </button>
             <button
-                className={`tab-nav-button ${activeTab === "submitApplication" && "active"}`} onClick={() => setActiveTab("submitApplication")}>
-                Submit Application
-            </button>
-            <button
                 className={`tab-nav-button ${activeTab === "checkStatus" && "active"}`} onClick={() => setActiveTab("checkStatus")}>
                 Check Status
             </button>
         </nav>
-            <header className="dashboard-header">
-            <p>Welcome to the Common App</p>
-        </header>
       <main className="dashboard-main">
 
 
-        {activeTab === "myApplication" && (
-          <section className="application-form">
-            <div className="app">
-              <Widget title="Total Orders" subtitle="1,256" icon="fas fa-shopping-bag" />
-              <Widget title="Total Revenue" subtitle="$12,567" icon="fas fa-dollar-sign" />
-              <Widget title="Avg. Order Value" subtitle="$56.75" icon="fas fa-calculator" />
-            </div>
-          </section>
-        )}
+      {activeTab === "myApplication" && (
+        <div className="card-container">
+          {uni.map((university, index) => (
+            <MyCard key={index} uni={university} />
+          ))}
+        </div>
+    )}
 
-        {activeTab === "addProgram" && (
-          <section className="add-program-form">
-            <h2>Add Program</h2>
-            <div className="university-table-container">
-              <UniversityTable programs={programs} />
-            </div>
-          </section>
-        )}
-
-        {activeTab === "submitApplication" && (
-          <section className="submit-application-form">
-            <h2>Submit Application</h2>
-            <form>
-              {/* Add form fields here */}
-            </form>
-          </section>
+      {activeTab === "addProgram" && (
+        <section className="add-program-form">
+          <h2>Add Program</h2>
+          <div className="university-table-container">
+            <UniversityTable programs={programs} />
+          </div>
+        </section>
         )}
 
         {activeTab === "checkStatus" && (

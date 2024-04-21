@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableRow, TextField } from '@mui/material';
+import './AddPrograms.css'; 
 
 const UniversityTable = ({ programs }) => {
   const [search, setSearch] = useState('');
@@ -13,7 +14,8 @@ const UniversityTable = ({ programs }) => {
   );
 
   return (
-    <div>
+    <div className="table-container">
+      <br/>
       <TextField
         fullWidth
         label="Search Programs"
@@ -36,7 +38,7 @@ const UniversityTable = ({ programs }) => {
         </TableHead>
         <TableBody>
           {filteredData.map((program) => (
-            <TableRow key={program.name}>
+            <TableRow key={program.name} className="table-row"> {/* Add class for styling */}
               <TableCell>{program.name}</TableCell>
               <TableCell>{program.country}</TableCell>
               <TableCell>{program.city}</TableCell>

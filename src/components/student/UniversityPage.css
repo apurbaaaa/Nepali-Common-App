@@ -1,0 +1,124 @@
+/* UniversityPage.css */
+
+.university-template {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .university-template:hover {
+    transform: translateY(-5px); /* Add a slight upward movement on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Add a subtle shadow on hover */
+  }
+  
+  .university-image {
+    flex: none;
+    max-height: 500px;
+    overflow: hidden;
+  }
+  
+  .university-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Add a smooth transition for the image */
+  }
+  
+  .university-image:hover img {
+    transform: scale(1.05); /* Zoom in the image on hover */
+  }
+  
+  .university-details {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .university-name {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .detail {
+    margin-top: 10px;
+  }
+  
+  .label {
+    font-size: 18px;
+    color: #666;
+  }
+  
+  .value {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  @media (max-width: 768px) {
+    .university-template {
+      flex-direction: column;
+    }
+  
+    .university-image,
+    .university-details {
+      flex: none;
+      width: 100%;
+    }
+  
+    .university-name {
+      font-size: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .university-details {
+      padding: 10px;
+    }
+  
+    .university-name {
+      font-size: 18px;
+    }
+  }
+  
+  /* SubmitButton.css */
+
+.submit-button-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button.loading {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .submit-button.success {
+    background-color: #28a745;
+  }
+  
+  .submit-button.error {
+    background-color: #dc3545;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  

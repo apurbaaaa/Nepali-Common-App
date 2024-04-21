@@ -1,0 +1,73 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    width: calc(30% - 20px); /* Adjust card width */
+    margin: 0 20px 20px 20px; /* Adjust margin */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  }
+
+.image-container {
+  position: relative;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.content {
+  padding: 15px;
+  text-align: left;
+}
+
+.title {
+  font-size: 1.25em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 0.85em;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.requirements {
+  font-size: 0.85em;
+  color: #666;
+}
+
+.requirements ul {
+  padding-left: 20px; /* Add some padding to the list */
+}
+
+.requirements li {
+  margin-bottom: 5px; /* Add spacing between list items */
+}
+
+.card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: calc(100% - 40px); /* Adjust width for smaller screens */
+    margin: 10px; /* Adjust margin for smaller screens */
+  }
+}
