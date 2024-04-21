@@ -1,0 +1,61 @@
+.auth-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #15007f, #ffffff); /* Red to yellow gradient similar to KFC */
+    color: #fff;
+  }
+  
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: rgba(255, 255, 255, 0.7); /* Lighter background for form */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .auth-form input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd; /* Keep the input borders subtle */
+    outline: none;
+  }
+  
+  .auth-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #432eff; /* Bright red for buttons, reminiscent of KFC */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .auth-form button:hover {
+    background-color: #432eff; /* Darker shade of red on hover */
+  }
+  
+  .auth-switch {
+    margin-top: 20px;
+    color: #050000; /* Adjusted for better visibility */
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .upload-area {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background-color: rgba(255, 255, 255, 0.7); /* Lighter, for contrast with the red */
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border: 2px dashed #432eff; /* Dashed border in bright red */
+      text-align: center;
+      margin-top: 20px;
+      cursor: pointer;
+  }
