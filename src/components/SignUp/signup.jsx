@@ -23,15 +23,26 @@ const SignUpPage = () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      
-      // Store the user's UID, email, and role in Firestore
-      await setDoc(doc(db, "users", user.uid), {
+      const userData = {
         email: email, // User's email
         role: role, // User's selected role
-      });
+      };
+
+      // If the role is College, store the user's UID as collegeId
+      if (role === "College") {
+        userData.collegeId = user.uid; // Storing UID as collegeId for colleges
+      }
+
+      // Store the user's data in Firestore
+      await setDoc(doc(db, "users", user.uid), userData);
       
       console.log("User registered successfully with role:", role);
-      navigate("/student-dashboard"); // Adjust as needed for your application's routes
+      // Navigate based on the role
+      if (role === "Student") {
+        navigate("/student-dashboard"); // Navigate to student dashboard
+      } else if (role === "College") {
+        navigate("/college-dashboard"); // Navigate to college dashboard
+      }
     } catch (error) {
       setError(error.message);
     }

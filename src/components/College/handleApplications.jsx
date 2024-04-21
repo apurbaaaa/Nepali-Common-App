@@ -2,37 +2,72 @@ import React, { useState } from 'react';
 import { db, storage } from '../../firebase/firebase'; // Adjust the path as needed
 import { addDoc, collection } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import './handleApplications.css'
+import './handleApplications.css';
 
 function HandleApplication() {
   const [collegeName, setCollegeName] = useState('');
   const [location, setLocation] = useState('');
   const [description, setDescription] = useState('');
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false); // Track loading state
+  const [message, setMessage] = useState(''); // User feedback message
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
+    setMessage('');
+    const collegeId = localStorage.getItem('collegeId'); // Retrieve collegeId from local storage
 
-    // First upload the image to Firebase Storage
-    const storageRef = ref(storage, `applications/${file.name}`);
+    if (!collegeId) {
+      setLoading(false);
+      alert("Error: College ID is missing. Please log in again.");
+      return;
+    }
+
+    if (!file) {
+      setLoading(false);
+      alert("Please upload an image file.");
+      return;
+    }
+
+    const filename = `${collegeId}_${Date.now()}_${file.name}`;
+    const storageRef = ref(storage, `collegeimages/${filename}`);
+
     uploadBytes(storageRef, file).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((downloadURL) => {
-        // Then save the document in Firestore
         const docRef = collection(db, "applications");
         addDoc(docRef, {
           collegeName,
           location,
           description,
-          imageUrl: downloadURL
+          imageUrl: downloadURL,
+          collegeId
         })
         .then(() => {
-          console.log("Document written with ID: ", docRef.id);
+          console.log("Application submitted successfully.");
+          setMessage('Application submitted successfully!');
+          resetForm();
+          setLoading(false);
         })
         .catch((error) => {
           console.error("Error adding document: ", error);
+          setMessage('Error submitting application. Please try again.');
+          setLoading(false);
         });
       });
+    }).catch((error) => {
+      console.error("Error uploading image: ", error);
+      setMessage('Failed to upload image. Please try again.');
+      setLoading(false);
     });
+  };
+
+  const resetForm = () => {
+    setCollegeName('');
+    setLocation('');
+    setDescription('');
+    setFile(null);
+    document.getElementById('file').value = null; // Reset file input
   };
 
   const handleFileChange = (event) => {
@@ -43,6 +78,7 @@ function HandleApplication() {
     <div className="application-upload-form">
       <h1>Upload College Application</h1>
       <form onSubmit={handleSubmit}>
+        {message && <p>{message}</p>}
         <div>
           <label htmlFor="collegeName">College Name:</label>
           <input
@@ -78,11 +114,13 @@ function HandleApplication() {
             id="file"
             type="file"
             onChange={handleFileChange}
-            accept="image/*" // Only accept image files
+            accept="image/*"
             required
           />
         </div>
-        <button type="submit">Submit Application</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Submitting...' : 'Submit Application'}
+        </button>
       </form>
     </div>
   );
