@@ -8,6 +8,7 @@ function HandleApplication() {
   const [collegeName, setCollegeName] = useState('');
   const [location, setLocation] = useState('');
   const [description, setDescription] = useState('');
+  const [startTerm, setStartTerm] = useState('');
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false); // Track loading state
   const [message, setMessage] = useState(''); // User feedback message
@@ -40,6 +41,7 @@ function HandleApplication() {
           collegeName,
           location,
           description,
+          startTerm,
           imageUrl: downloadURL,
           collegeId
         })
@@ -95,6 +97,16 @@ function HandleApplication() {
             id="location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
+            type="text"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="startTerm">Start Term:</label>
+          <input
+            id="startTerm"
+            value={startTerm}
+            onChange={(e) => setStartTerm(e.target.value)}
             type="text"
             required
           />
