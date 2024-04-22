@@ -26,7 +26,7 @@ function App() {
           <Route path="/college-dashboard" element={<College />} />
 
           {/* Additional Functionalities */}
-          <Route path="/university-details" element={<UniversityPage />} />
+          <Route path="/university-details/:collegeId" element={<UniversityPage />} />
           <Route path="/handle-applications" element={<HandleApplication />} />
           <Route path="/my-profile" element={<ProfilePage />} />
         </Routes>

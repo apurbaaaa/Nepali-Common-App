@@ -1,11 +1,59 @@
 import React, { useState } from 'react';
-import './MyProfile.css'; // Import your CSS file for styling
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../../firebase/firebase';
+import './MyProfile.css';
 
-const ProfilePage = () => {
+const ProfilePage = ({ user }) => {
   const [activeTab, setActiveTab] = useState('personalInfo');
-  
+  const [formData, setFormData] = useState({
+    name: '',
+    age: '',
+    address: '',
+    email: '',
+    phone: '',
+    fatherName: '',
+    fatherPhone: '',
+    motherName: '',
+    motherPhone: '',
+    educationDetails: '',
+    eca: ''
+  });
+
   const handleTabChange = (tab) => {
     setActiveTab(tab);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // This function is used when submitting data for any of the forms
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const docRef = await addDoc(collection(db, "studentdetails"), formData);
+      console.log("Document written with ID: ", docRef.id);
+      resetFormData();
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+  };
+
+  const resetFormData = () => {
+    setFormData({
+      name: '',
+      age: '',
+      address: '',
+      email: '',
+      phone: '',
+      fatherName: '',
+      fatherPhone: '',
+      motherName: '',
+      motherPhone: '',
+      educationDetails: '',
+      eca: ''
+    });
   };
 
   return (
@@ -31,37 +79,33 @@ const ProfilePage = () => {
         </button>
       </div>
       <div className="tab-content">
-        {activeTab === 'personalInfo' && <PersonalInfoForm />}
-        {activeTab === 'education' && <EducationForm />}
-        {activeTab === 'eca' && <Eca/>}
+        {activeTab === 'personalInfo' && (
+          <PersonalInfoForm
+            formData={formData}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}  // Used general handleSubmit for all forms
+          />
+        )}
+        {activeTab === 'education' && (
+          <EducationForm
+            formData={formData}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}  // Used general handleSubmit for all forms
+          />
+        )}
+        {activeTab === 'eca' && (
+          <Eca
+            formData={formData}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}  // Used general handleSubmit for all forms
+          />
+        )}
       </div>
     </div>
   );
 };
 
-const PersonalInfoForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    age: '',
-    address: '',
-    email: '',
-    phone: '',
-    fatherName: '',
-    fatherPhone: '',
-    motherName: '',
-    motherPhone: '',
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission
-  };
-
+const PersonalInfoForm = ({ formData, handleChange, handleSubmit }) => {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" required />
@@ -73,26 +117,11 @@ const PersonalInfoForm = () => {
       <input type="tel" name="fatherPhone" value={formData.fatherPhone} onChange={handleChange} placeholder="Father's Phone" required />
       <input type="text" name="motherName" value={formData.motherName} onChange={handleChange} placeholder="Mother's Name" required />
       <input type="tel" name="motherPhone" value={formData.motherPhone} onChange={handleChange} placeholder="Mother's Phone" required />
-      <button type="submit">Submit</button>
     </form>
   );
 };
 
-const EducationForm = () => {
-  const [formData, setFormData] = useState({
-    educationDetails: '',
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-  };
-
+const EducationForm = ({ formData, handleChange, handleSubmit }) => {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <textarea
@@ -102,38 +131,23 @@ const EducationForm = () => {
         placeholder="Education Details"
         required
       />
-      <button type="submit">Submit</button>
     </form>
   );
 };
 
-const Eca = () => {
-    const [formData, setFormData] = useState({
-        eca: '',
-      });
-    
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-      };
-    
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        
-      };
-
-      return(
-        <form className="form" onSubmit={handleSubmit}>
-            <textarea
-            name="eca"
-            value={formData.eca}
-            onChange={handleChange}
-            placeholder="Extra-Curricular Activities"
-            required
-            />
-            <button type="submit">Submit</button>
-        </form>
-      );
-}
+const Eca = ({ formData, handleChange, handleSubmit }) => {
+  return (
+    <form className="form" onSubmit={handleSubmit}>
+      <textarea
+        name="eca"
+        value={formData.eca}
+        onChange={handleChange}
+        placeholder="Extra-Curricular Activities"
+        required
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
 
 export default ProfilePage;

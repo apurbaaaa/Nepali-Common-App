@@ -1,75 +1,50 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './UniversityPage.css'; 
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../../firebase/firebase';
+import './UniversityPage.css';
 
-const SubmitButton = ({ personDetails }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isError, setIsError] = useState(false);
+function UniversityDetails() {
+    const [collegeDetails, setCollegeDetails] = useState(null);
+    const { collegeId } = useParams(); // Retrieve the collegeId from URL
 
-  const handleSubmit = async () => {
-    setIsLoading(true);
-    try {
-      // Make a POST request with Axios
-      const response = await axios.post('https://api.example.com/person', personDetails);
-      if (response.status === 200) {
-        setIsSuccess(true);
-      } else {
-        setIsError(true);
-      }
-    } catch (error) {
-      setIsError(true);
-    }
-    setIsLoading(false);
-  };
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const q = query(collection(db, "studentcolleges"), where("collegeId", "==", collegeId));
+              const querySnapshot = await getDocs(q);
+  
+              if (!querySnapshot.empty) {
+                  // Accessing collegeFieldId from the retrieved document
+                  const data = querySnapshot.docs.map(doc => ({ id: doc.id, collegeFieldId: doc.data().collegeFieldId, ...doc.data() }))[0];
+                  setCollegeDetails(data);
+              } else {
+                  console.log("No document with the matching collegeId field found");
+              }
+          } catch (error) {
+              console.error("Error fetching data:", error);
+          }
+      };
+  
+      fetchData();
+  }, [collegeId]);
+  
 
-  return (
-    <div className="submit-button-container">
-      <button
-        className={`submit-button ${isLoading ? 'loading' : ''} ${isSuccess ? 'success' : ''} ${isError ? 'error' : ''}`}
-        onClick={handleSubmit}
-        disabled={isLoading}
-      >
-        {isLoading ? 'Loading...' : isSuccess ? 'Success!' : isError ? 'Error. Try Again' : 'Submit'}
-      </button>
-    </div>
-  );
-};
-
-const UniversityPage = () => {
-  const university = {
-    image: "https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg",
-    name: "Sample University",
-    location: "Sample Location",
-    description: "Sample Description",
-    requirements: "Sample Requirements"
-  };
-
-  const { image, name, location, description, requirements } = university;
-
-  return (
-    <div className="university-template">
-      <div className="university-image">
-        <img src={image} alt={name} />
-      </div>
-      <div className="university-details">
-        <h1 className="university-name">{name}</h1>
-        <div className="detail">
-          <h1 className="label">Location:</h1>
-          <h3 className="value">{location}</h3>
+    return (
+        <div>
+            {collegeDetails ? (
+                <div>
+                    <h2>{collegeDetails.collegeName}</h2>
+                    <img src={collegeDetails.imageUrl} alt={collegeDetails.collegeName} />
+                    <p>{collegeDetails.description}</p>
+                    <p>{collegeDetails.location}</p>
+                    <p>Start term: {collegeDetails.startTerm}</p>
+                </div>
+            ) : (
+                <p>Loading details...</p>
+            )}
         </div>
-        <div className="detail">
-          <h1 className="label">Description:</h1>
-          <h3 className="value">{description}</h3>
-        </div>
-        <div className="detail">
-          <h1 className="label">Requirements:</h1>
-          <h3 className="value">{requirements}</h3>
-        </div>
-      </div>
-      <SubmitButton personDetails={{ /* pass person details here */ }} />
-    </div>
-  );
+    );
 }
 
-export default UniversityPage;
+export default UniversityDetails;
