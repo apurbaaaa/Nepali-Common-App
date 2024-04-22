@@ -62,18 +62,21 @@ function Student() {
       </header>
       <nav className="tab-nav">
         <button
-          className={tab-nav-button ${activeTab === "myApplication" && "active"}}
-          onClick={() => setActiveTab("myApplication")}>
+          className={`tab-nav-button ${activeTab === "myApplication" && "active"}`}
+          onClick={() => setActiveTab("myApplication")}
+        >
           My Application
         </button>
         <button
-          className={tab-nav-button ${activeTab === "addProgram" && "active"}}
-          onClick={() => setActiveTab("addProgram")}>
+          className={`tab-nav-button ${activeTab === "addProgram" && "active"}`}
+          onClick={() => setActiveTab("addProgram")}
+        >
           Add Program
         </button>
-        <button>
-          className={tab-nav-button ${activeTab === "myProfile" && "active"}}
-          onClick={() => setActiveTab("myProfile")}>
+        <button
+          className={`tab-nav-button ${activeTab === "myProfile" && "active"}`}
+          onClick={() => setActiveTab("myProfile")}
+        >
           My Profile
         </button>
       </nav>
