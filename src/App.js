@@ -11,6 +11,7 @@ import College from './components/College/college';
 import HandleApplication from './components/College/handleApplications';
 import UniversityPage from './components/student/UniversityPage';
 import ProfilePage from './components/student/MyProfile';
+import SeeApplicationsPage from './components/College/seeApplications';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           {/* Additional Functionalities */}
           <Route path="/university-details/:collegeId" element={<UniversityPage />} />
           <Route path="/handle-applications" element={<HandleApplication />} />
+          <Route path="/see-applications/:studentId" element={<SeeApplicationsPage />} />
           <Route path="/my-profile" element={<ProfilePage />} />
         </Routes>
       </Router>

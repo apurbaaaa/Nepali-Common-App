@@ -1,15 +1,36 @@
 // In college.jsx
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import './college.css';
 import { useNavigate } from 'react-router-dom';
+import { db } from '../../firebase/firebase';
+import { collection, getDocs } from 'firebase/firestore';
+
+
+
 
 function College() {
-  const [activeTab, setActiveTab] = React.useState("addApplication");
+  const [activeTab, setActiveTab] = useState("addApplication");
+  const [applications, setApplications] = useState([]);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchApplications = async () => {
+      const querySnapshot = await getDocs(collection(db, "studentApplications"));
+      const apps = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+      setApplications(apps);
+    };
+
+    fetchApplications();
+  }, []);
+
   const goToApplicationHandling = () => {
-    navigate("/handle-applications");  // This path must match the route defined in App.js
+    navigate("/handle-applications");
   };
+
+  const goToSeeApplications = (studentId) => {
+    navigate(`/see-applications/${studentId}`);
+
+  }
 
   return (
     <div className="dashboard-container">
@@ -19,14 +40,14 @@ function College() {
 
       <nav className="tab-nav">
         <button
-            className={`tab-nav-button ${activeTab === "addApplication" ? "active" : ""}`} 
-            onClick={() => setActiveTab("addApplication")}>
-            Add Application
+          className={`tab-nav-button ${activeTab === "addApplication" ? "active" : ""}`} 
+          onClick={() => setActiveTab("addApplication")}>
+          Add Application
         </button>
         <button
-            className={`tab-nav-button ${activeTab === "seeApplications" ? "active" : ""}`} 
-            onClick={() => setActiveTab("seeApplications")}>
-            See Applications
+          className={`tab-nav-button ${activeTab === "seeApplications" ? "active" : ""}`} 
+          onClick={() => setActiveTab("seeApplications")}>
+          See Applications
         </button>
       </nav>
 
@@ -43,7 +64,24 @@ function College() {
           <section className="add-program-form">
             <h2>View Applications</h2>
             <div className="university-table-container">
-                Content goes here
+              <table>
+                <thead>
+                  <tr>
+                    <th>Student Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {applications.map((app) => {
+                    return (
+                        <tr key={app.id}>
+                            <td onClick={() => goToSeeApplications(app.studentId)}>
+                                {app.studentDetails.name}
+                            </td>
+                        </tr>
+                    );
+                })}
+                </tbody>
+              </table>
             </div>
           </section>
         )}

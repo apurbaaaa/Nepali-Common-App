@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
+import { v4 as uuidv4 } from 'uuid'; // Import UUID
 import './UniversityPage.css';
 
 function UniversityDetails() {
     const [collegeDetails, setCollegeDetails] = useState(null);
-    const { collegeId } = useParams(); // Retrieve the collegeId from URL
+    const { collegeId } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Fetch college details
                 const collegeQuery = query(collection(db, "studentcolleges"), where("collegeId", "==", collegeId));
                 const collegeSnapshot = await getDocs(collegeQuery);
                 if (!collegeSnapshot.empty) {
@@ -30,22 +30,24 @@ function UniversityDetails() {
 
     const handleSubmit = async () => {
         try {
-            // Fetch student details from Firestore
-            const studentQuery = query(collection(db, "studentDetails"));
+            const studentQuery = query(collection(db, "studentdetails")); // Ensure correct collection name
             const studentSnapshot = await getDocs(studentQuery);
+            console.log("Snapshot empty:", studentSnapshot.empty);
+            console.log("Snapshot size:", studentSnapshot.size);
             if (!studentSnapshot.empty) {
                 studentSnapshot.forEach(async (doc) => {
-                    // Upload student application to studentApplications collection
+                    const uniqueStudentId = uuidv4(); // Generate a unique ID for each student application
                     await addDoc(collection(db, "studentApplications"), {
+                        studentId: uniqueStudentId,
                         collegeId: collegeId,
                         studentDetails: doc.data()
                     });
                 });
-                // Alert indicating successful submission
                 window.alert("Application submitted successfully!");
             } else {
                 console.log("No student details found in the database");
             }
+
         } catch (error) {
             console.error("Error submitting applications:", error);
         }
