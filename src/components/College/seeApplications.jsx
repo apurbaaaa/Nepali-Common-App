@@ -10,28 +10,35 @@ const SeeApplicationsPage = () => {
 
   useEffect(() => {
     const fetchStudentDetails = async () => {
-        setLoading(true);
-        try {
-          // Query Firestore to find the document where studentId matches
-          const q = query(collection(db, 'studentApplications'), where('studentId', '==', studentId));
-          const querySnapshot = await getDocs(q);
-          
-          if (!querySnapshot.empty) {
-            // Extract studentDetails from the first document in the snapshot
-            const docData = querySnapshot.docs[0].data();
-            setStudentDetails(docData.studentDetails); // Accessing studentDetails from the retrieved document
-          } else {
-            console.log('No document found with studentId:', studentId);
-          }
-        } catch (error) {
-          console.error('Error fetching student details:', error);
+      setLoading(true);
+      try {
+        // Query Firestore to find the document where studentId matches
+        const q = query(collection(db, 'studentApplications'), where('studentId', '==', studentId));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+          // Extract studentDetails from the first document in the snapshot
+          const docData = querySnapshot.docs[0].data();
+          setStudentDetails(docData.studentDetails); // Accessing studentDetails from the retrieved document
+        } else {
+          console.log('No document found with studentId:', studentId);
         }
-        setLoading(false);
-      };
-      
+      } catch (error) {
+        console.error('Error fetching student details:', error);
+      }
+      setLoading(false);
+    };
 
     fetchStudentDetails();
   }, [studentId]); // Dependency array ensures this effect runs when studentId changes
+
+  const handleOpenMail = () => {
+    if (studentDetails && studentDetails.email) {
+      window.open(`mailto:${studentDetails.email}`);
+    } else {
+      console.error('No email address found.');
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -58,6 +65,7 @@ const SeeApplicationsPage = () => {
         <p><strong>Mother's Name:</strong> {studentDetails.motherName}</p>
         <p><strong>Mother's Phone:</strong> {studentDetails.motherPhone}</p>
         {/* Add more details as needed */}
+        <button onClick={handleOpenMail}>Open Mail</button>
       </div>
     </div>
   );
