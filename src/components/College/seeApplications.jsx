@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
+import './seeApplications.css';
 
 const SeeApplicationsPage = () => {
   const [studentDetails, setStudentDetails] = useState(null);
@@ -50,9 +51,9 @@ const SeeApplicationsPage = () => {
 
   // Render the student details
   return (
-    <div>
-      <h1>Student Details</h1>
-      <div>
+    <><br/><br/><br/><br/><div className="custom-card">
+      <h1 className="custom-card-title">Student Details</h1>
+      <div className="custom-card-content">
         <p><strong>Name:</strong> {studentDetails.name}</p>
         <p><strong>Email:</strong> {studentDetails.email}</p>
         <p><strong>Phone:</strong> {studentDetails.phone}</p>
@@ -65,9 +66,9 @@ const SeeApplicationsPage = () => {
         <p><strong>Mother's Name:</strong> {studentDetails.motherName}</p>
         <p><strong>Mother's Phone:</strong> {studentDetails.motherPhone}</p>
         {/* Add more details as needed */}
-        <button onClick={handleOpenMail}>Open Mail</button>
+        <button className="custom-card-button" onClick={handleOpenMail}>Open Mail</button>
       </div>
-    </div>
+    </div></>
   );
 };
 

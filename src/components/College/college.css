@@ -48,37 +48,13 @@
     border-bottom: 2px solid #333;
   }
   
-  .application-form,
-  .add-program-form,
-  .submit-application-form,
-  .check-status-form {
-    background-color: #fff;
-    padding: 20px;
-    flex: 1;
-    margin-left: 20px;
-  }
-  
-  .application-form h2,
-  .add-program-form h2,
-  .submit-application-form h2,
-  .check-status-form h2 {
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-  }
-  
-  .application-form form,
-  .add-program-form form,
-  .submit-application-form form,
-  .check-status-form form {
-    margin-bottom: 20px;
-  }
   
   .dashboard-footer {
     background-color: #1677a0;
     display: flex;
     justify-content: flex-end;
     padding: 10px 0 10px 0;
+    text-align: center;
   }
   
   .dashboard-footer p {
@@ -112,18 +88,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Use full height to center vertically */
     position: relative;
-    background: rgba(255, 255, 255, 0.1); /* White hue with low opacity */
-    backdrop-filter: blur(10px); /* Blurring effect for the background */
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px);
   }
   
-  /* Ensuring the app container is also centered if needed */
   .app {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Stack children vertically */
+    flex-direction: column;
   }
   
   .big-button {
@@ -134,14 +108,13 @@
     border-radius: 5px;
     cursor: pointer;
     animation: bounce 2s infinite;
-    transition: transform 0.2s; /* Smooth transform */
+    transition: transform 0.2s; 
   }
   
   .big-button:hover {
-    transform: scale(1.05); /* Slightly increase size on hover */
+    transform: scale(1.05); 
   }
   
-  /* Keyframes for bouncing effect */
   @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
       transform: translateY(0);
@@ -157,8 +130,8 @@
   .tab-nav {
     background-color: #f5f5f5;
     display: flex;
-    align-items: center; /* Center align items vertically */
-    justify-content: center; /* Center align items horizontally */
+    align-items: center; 
+    justify-content: center; 
     padding: 10px;
     border-bottom: 1px solid #ccc;
   }
@@ -181,4 +154,34 @@
     font-weight: bold;
     border-bottom: 2px solid #333;
   }
+
+  .see-applications-table{
+    text-align: center;
+    width: 100%;
+  }
+  .responsive-table-container {
+    overflow-x: auto;
+    display: flex;
+    justify-content: center; 
+    margin-top: 20px;
+  }
   
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.responsive-table th, .responsive-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.responsive-table tbody tr {
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.responsive-table tbody tr:hover {
+  background-color: #f5f5f5;
+}
