@@ -68,6 +68,7 @@ const UniversityPage = () => {
         </div>
       </div>
       <SubmitButton personDetails={{ /* pass person details here */ }} />
+      <br></br>
     </div>
   );
 }

@@ -61,14 +61,30 @@ const LoginPage = () => {
     <div className="auth-page">
       <form onSubmit={handleSubmit} className="auth-form">
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <input name="email" type="email" placeholder="Email" required />
-        <input name="password" type="password" placeholder="Password" required />
+        <div className="input-container">
+          <input
+            className="input1" 
+            name="email" 
+            type="email" 
+            placeholder="Email" 
+            required 
+          />
+        </div>
+        <div className="input-container">
+          <input
+            className="input1" 
+            name="password" 
+            type="password" 
+            placeholder="Password" 
+            required 
+          />
+        </div>
         <button type="submit" disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
       <div style={{marginTop: "20px"}}>
-        <button onClick={handleSignUpNavigation}>New user? Sign up</button>
+        <button className='button' onClick={handleSignUpNavigation}>New user? Sign up</button>
       </div>
     </div>
   );

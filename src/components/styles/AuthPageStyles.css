@@ -1,61 +1,87 @@
 .auth-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(to bottom, #15007f, #ffffff); /* Red to yellow gradient similar to KFC */
-    color: #fff;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom, #15007f, #ffffff);
+  color: #fff;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 400px;
+  padding: 40px;
+  align-self: center;
+}
+
+.input-container {
+  width: 100%;
+  position: relative;
+  height: 100%;
+  align-self: center;
+}
+
+.input1 {
+  height: 50px;
+  width: 98%;
+  transition: .2s linear;
+  border: 2.5px solid black;
+  font-size: 16px;
+}
+
+.input1:focus {
+  outline: none;
+  border: 0.5px solid black;
+  box-shadow: -5px -5px 0px black;
+}
+
+.auth-form button {
+  padding: 15px;
+  width: 80%;
+  border: none;
+  border-radius: 5px;
+  background-color: #1677a0;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-self: center;
+}
+
+.auth-form button:hover,
+.button:hover {
+  background-color: #2c2c2d8e;
+}
+
+.auth-switch {
+  margin-top: 20px;
+  color: #050000; 
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.button {
+  background-color: #1677a0;
+  color: white;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 5px;
+}
+
+@media screen and (min-width: 768px) {
   .auth-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background-color: rgba(255, 255, 255, 0.7); /* Lighter background for form */
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 60%; 
   }
-  
-  .auth-form input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd; /* Keep the input borders subtle */
-    outline: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .auth-form {
+    width: 40%;
   }
-  
-  .auth-form button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #432eff; /* Bright red for buttons, reminiscent of KFC */
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .auth-form button:hover {
-    background-color: #432eff; /* Darker shade of red on hover */
-  }
-  
-  .auth-switch {
-    margin-top: 20px;
-    color: #050000; /* Adjusted for better visibility */
-    cursor: pointer;
-    text-decoration: underline;
-  }
-  
-  .upload-area {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      background-color: rgba(255, 255, 255, 0.7); /* Lighter, for contrast with the red */
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      border: 2px dashed #432eff; /* Dashed border in bright red */
-      text-align: center;
-      margin-top: 20px;
-      cursor: pointer;
-  }
+}

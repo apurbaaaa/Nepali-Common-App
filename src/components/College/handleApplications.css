@@ -1,28 +1,122 @@
 .application-upload-form {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin: 50px auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  animation: fadeInDown 0.5s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.application-upload-form:hover {
+  transform: scale(1.02);
+}
+.application-upload-form h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.application-upload-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 96%;
+}
+
+.application-upload-form label {
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+.application-upload-form textarea {
+  resize: vertical;
+}
+
+.application-upload-form button {
+  padding: 12px 20px;
+  background-color: #1234ba;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 150px;
+  align-self: center;
+}
+
+.application-upload-form button:hover {
+  background-color: #0f2c81;
+  transform: translateY(-2px);
+}
+
+.message {
+  color: #ff4500;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.message.loading {
+  opacity: 1;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  .application-upload-form form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .application-upload-form input, .application-upload-form textarea {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+}
+
+.input-container {
+  width: 100%;
+  position: relative;
+  height: 100%;
+  align-self: center;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  transition: .2s linear;
+  border: 2.5px solid black;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.input:focus {
+  outline: none;
+  border: 0.5px solid black;
+  box-shadow: -5px -5px 0px black;
+}
+
+.textarea {
+  height: 300px;
+}
+
+
+@media screen and (min-width: 400px) {
+  .application-upload-form {
+    width: 60%;
   }
-  
-  .application-upload-form button {
-    padding: 10px 20px;
-    background-color: #1234ba;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+
+  .input {
+    font-size: 16px;
   }
-  
+}
+
+@media screen and (min-width: 1024px) {
+  .application-upload-form {
+    width: 40%;
+  }
+
+  .input {
+    font-size: 18px;
+  }
+}

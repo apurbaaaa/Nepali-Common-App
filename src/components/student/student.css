@@ -67,16 +67,15 @@
 
 .application-form form,
 .add-program-form form,
-.profile-page form { /* Added profile-page form */
+.profile-page form {
   margin-bottom: 20px;
 }
 
 .dashboard-footer {
   background-color: #1677a0;
   display: flex;
-  justify-content: center; /* Center content within footer for better alignment */
-  padding: 10px;
-  width: 100%; /* Ensures footer takes full width */
+  justify-content: center;
+  padding: 10px 0 10px 0;
 }
 
 .dashboard-footer p {

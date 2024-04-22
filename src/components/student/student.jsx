@@ -64,7 +64,7 @@ function Student() {
                 <MyCard key={program.id} uni={program} />
               ))              
             ) : (
-              <p>No programs available.</p> // Show a message if no data is available
+              <p>No programs available.</p> 
             )}
           </div>
         )}

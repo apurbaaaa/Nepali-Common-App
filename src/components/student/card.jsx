@@ -9,7 +9,6 @@ const MyCard = ({ uni }) => {
     return (
         <div className="card" onClick={handleClick}>
             <div className="image-container">
-                {/* Check for uni.image and uni.name existence before using them */}
                 <img className="image" src={uni.image || 'default_image.png'} alt={uni.name || 'Default Name'} />
             </div>
             <div className="content">
