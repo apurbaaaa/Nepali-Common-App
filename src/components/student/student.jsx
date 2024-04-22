@@ -4,11 +4,12 @@ import { db } from '../../firebase/firebase';
 import './student.css';
 import UniversityTable from "./AddPrograms";
 import MyCard from "./card";
-import ProfilePage from "./MyProfile"; // Make sure the path to ProfilePage is correct
+import ProfilePage from "./MyProfile";
 
 function Student() {
   const [activeTab, setActiveTab] = React.useState("myApplication");
-  const [programs, setPrograms] = useState([]); // Initialize as an empty array
+  const [programs, setPrograms] = useState([]);
+  const [colleges, setColleges] = useState([]);
 
   useEffect(() => {
     const fetchPrograms = async () => {
@@ -28,11 +29,31 @@ function Student() {
         console.error("Error fetching programs:", error);
       }
     };
-  
+
     fetchPrograms();
   }, []);
-  
-  console.log(programs);
+
+  useEffect(() => {
+    const fetchColleges = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "studentcolleges"));
+        const loadedColleges = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          collegeName: doc.data().collegeName,
+          location: doc.data().location,
+          description: doc.data().description,
+          startTerm: doc.data().startTerm,
+          imageUrl: doc.data().imageUrl,
+          collegeId: doc.data().collegeId,
+        }));
+        setColleges(loadedColleges);
+      } catch (error) {
+        console.error("Error fetching colleges:", error);
+      }
+    };
+
+    fetchColleges();
+  }, []);
 
   return (
     <div className="dashboard-container">
@@ -41,17 +62,17 @@ function Student() {
       </header>
       <nav className="tab-nav">
         <button
-          className={`tab-nav-button ${activeTab === "myApplication" && "active"}`}
+          className={tab-nav-button ${activeTab === "myApplication" && "active"}}
           onClick={() => setActiveTab("myApplication")}>
           My Application
         </button>
         <button
-          className={`tab-nav-button ${activeTab === "addProgram" && "active"}`}
+          className={tab-nav-button ${activeTab === "addProgram" && "active"}}
           onClick={() => setActiveTab("addProgram")}>
           Add Program
         </button>
-        <button
-          className={`tab-nav-button ${activeTab === "myProfile" && "active"}`}
+        <button>
+          className={tab-nav-button ${activeTab === "myProfile" && "active"}}
           onClick={() => setActiveTab("myProfile")}>
           My Profile
         </button>
@@ -59,12 +80,12 @@ function Student() {
       <main className="dashboard-main">
         {activeTab === "myApplication" && (
           <div className="card-container">
-            {programs && programs.length > 0 ? (
-              programs.map((program) => (
-                <MyCard key={program.id} uni={program} />
-              ))              
+            {colleges.length > 0 ? (
+              colleges.map((college) => (
+                <MyCard key={college.collegeId} uni={college} />
+              ))
             ) : (
-              <p>No programs available.</p> 
+              <p>No colleges added yet.</p>
             )}
           </div>
         )}
@@ -90,4 +111,4 @@ function Student() {
   );
 }
 
-export default Student;
+export default Student;
