@@ -53,9 +53,25 @@ const SignUpPage = () => {
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit} className="auth-form">
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <input name="email" type="email" placeholder="Email" required />
-        <input name="password" type="password" placeholder="Password" required />
-        <select name="role" required defaultValue="">
+        <div className="input-container">
+          <input
+            className="input1" 
+            name="email" 
+            type="email" 
+            placeholder="Email" 
+            required 
+          />
+        </div>
+        <div className="input-container">
+          <input
+            className="input1" 
+            name="password" 
+            type="password" 
+            placeholder="Password" 
+            required 
+          />
+        </div>
+        <select name="role" className='input' required defaultValue="">
           <option value="" disabled>Select Role</option>
           <option value="Student">Student</option>
           <option value="College">College</option>

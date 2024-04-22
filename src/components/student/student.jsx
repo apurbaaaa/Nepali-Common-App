@@ -63,17 +63,20 @@ function Student() {
       <nav className="tab-nav">
         <button
           className={`tab-nav-button ${activeTab === "myApplication" && "active"}`}
-          onClick={() => setActiveTab("myApplication")}>
+          onClick={() => setActiveTab("myApplication")}
+        >
           My Application
         </button>
         <button
           className={`tab-nav-button ${activeTab === "addProgram" && "active"}`}
-          onClick={() => setActiveTab("addProgram")}>
+          onClick={() => setActiveTab("addProgram")}
+        >
           Add Program
         </button>
         <button
           className={`tab-nav-button ${activeTab === "myProfile" && "active"}`}
-          onClick={() => setActiveTab("myProfile")}>
+          onClick={() => setActiveTab("myProfile")}
+        >
           My Profile
         </button>
       </nav>
@@ -111,4 +114,4 @@ function Student() {
   );
 }
 
-export default Student;
+export default Student;

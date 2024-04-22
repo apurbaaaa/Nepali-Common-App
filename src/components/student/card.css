@@ -1,6 +1,6 @@
 .card-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: center;
   align-items: flex-start;
 }
@@ -10,9 +10,10 @@
     border-radius: 8px;
     overflow: hidden;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-    width: calc(30% - 20px); /* Adjust card width */
-    margin: 0 20px 20px 20px; /* Adjust margin */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    width: 100%; 
+    margin: 0 20px 20px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
   }
 
 .image-container {

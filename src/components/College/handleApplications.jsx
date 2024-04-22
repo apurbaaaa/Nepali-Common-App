@@ -81,19 +81,22 @@ function HandleApplication() {
       <h1>Upload College Application</h1>
       <form onSubmit={handleSubmit}>
         {message && <p>{message}</p>}
-        <div>
-          <label htmlFor="collegeName">College Name:</label>
-          <input
-            id="collegeName"
-            value={collegeName}
+        <div className="input-container">
+          <input 
+            type="text" 
+            id="collegeName" 
+            value={collegeName} 
+            name="text" 
+            className="input" 
+            placeholder="College Name" 
             onChange={(e) => setCollegeName(e.target.value)}
-            type="text"
-            required
-          />
+            required/>
         </div>
-        <div>
-          <label htmlFor="location">Location:</label>
-          <input
+        <div className="input-container">
+          <input 
+            name="text" 
+            className="input" 
+            placeholder="Location:"
             id="location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
@@ -101,9 +104,11 @@ function HandleApplication() {
             required
           />
         </div>
-        <div>
-          <label htmlFor="startTerm">Start Term:</label>
-          <input
+        <div className="input-container">
+          <input 
+            name="text" 
+            className="input" 
+            placeholder="Start Term:"
             id="startTerm"
             value={startTerm}
             onChange={(e) => setStartTerm(e.target.value)}
@@ -111,25 +116,29 @@ function HandleApplication() {
             required
           />
         </div>
-        <div>
-          <label htmlFor="description">Description:</label>
+        <div className="input-container">
           <textarea
+            name="text" 
+            className="input textarea" 
+            placeholder="Description:"
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label htmlFor="file">Upload Picture:</label>
+        <div class="input-container">
           <input
+            type="file" 
+            name="text" 
+            class="input" 
+            placeholder="Upload Image"
             id="file"
-            type="file"
             onChange={handleFileChange}
             accept="image/*"
             required
           />
-        </div>
+      </div>
         <button type="submit" disabled={loading}>
           {loading ? 'Submitting...' : 'Submit Application'}
         </button>
