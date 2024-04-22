@@ -1,5 +1,5 @@
 import React from 'react';
-import './University.css';
+import './UniversityPage.css';
 
 function UniversityInfo({ university }) {
   const { image, name, location, description, requirements } = university;

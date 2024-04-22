@@ -50,16 +50,16 @@
 
 .application-form,
 .add-program-form,
-.profile-page { /* Added profile-page class */
+.profile-page { 
   background-color: #fff;
   padding: 20px;
   flex: 1;
-  align-items: initial; /* or align-items: unset; */
+  align-items: initial; 
 }
 
 .application-form h2,
 .add-program-form h2,
-.profile-page h2 { /* Added profile-page h2 */
+.profile-page h2 { 
   border-bottom: 1px solid #ccc;
   margin-bottom: 10px;
   padding-bottom: 10px;
@@ -75,7 +75,7 @@
   background-color: #1677a0;
   display: flex;
   justify-content: center;
-  padding: 10px 0 10px 0;
+  padding: 10px;
 }
 
 .dashboard-footer p {

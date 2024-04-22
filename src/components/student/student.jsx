@@ -58,7 +58,7 @@ function Student() {
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">
-        <p>Welcome to the Common App</p>
+        <p>Welcome to the Shiksha Link</p>
       </header>
       <nav className="tab-nav">
         <button
@@ -108,7 +108,7 @@ function Student() {
       </main>
 
       <footer className="dashboard-footer">
-        <p>© 2023 Common App</p>
+        <p>© 2024 Shiksha Link</p>
       </footer>
     </div>
   );

@@ -1,4 +1,3 @@
-// In college.jsx
 import React, { useState, useEffect } from 'react';
 import './college.css';
 import { useNavigate } from 'react-router-dom';
@@ -35,7 +34,7 @@ function College() {
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">
-        <p>Welcome to the Common App</p>
+        <p>Welcome to the Shiksha Link</p>
         <section className="application-form">
             <div className="app">
               <button className="big-button" onClick={goToApplicationHandling}>+ Add Application</button>
@@ -84,8 +83,8 @@ function College() {
         }
       </main>
 
-      <footer className="dashboard-footer">
-        <p>© 2024 College App</p>
+      <footer>
+        <p>© 2024 Shiksha Link</p>
       </footer>
     </div>
   );

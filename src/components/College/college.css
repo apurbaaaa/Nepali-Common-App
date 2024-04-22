@@ -49,15 +49,13 @@
   }
   
   
-  .dashboard-footer {
+  footer {
     background-color: #1677a0;
     display: flex;
-    justify-content: flex-end;
-    padding: 10px 0 10px 0;
-    text-align: center;
+    justify-content: center;
+    padding: 10px;
   }
-  
-  .dashboard-footer p {
+  footer p {
     color: #fff;
     margin: 0;
   }
@@ -73,14 +71,6 @@
   
     .tab-nav-button {
       padding: 10px 0;
-    }
-  
-    .application-form,
-    .add-program-form,
-    .submit-application-form,
-    .check-status-form {
-      margin-left: 0;
-      margin-top: 20px;
     }
   }
 

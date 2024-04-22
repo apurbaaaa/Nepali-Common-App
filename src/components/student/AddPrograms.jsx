@@ -82,7 +82,7 @@ const UniversityTable = () => {
                 </TableHead>
                 <TableBody>
                     {filteredData.map((program) => (
-                        <TableRow key={program.collegeId}>
+                        <TableRow key={program.collegeId} className='tr'>
                             <TableCell>{program.collegeName || 'Unknown Name'}</TableCell>
                             <TableCell>{program.location || 'Unknown Location'}</TableCell>
                             <TableCell>{program.startTerm || 'Unknown Term'}</TableCell>
