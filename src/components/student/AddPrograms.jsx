@@ -49,7 +49,8 @@ const UniversityTable = () => {
                 collegeName: program.collegeName, 
                 collegeId: program.collegeId,  
                 location: program.location,
-                description: program.description
+                description: program.description,
+                startTerm: program.startTerm
             });
             alert(`College added successfully: ${program.collegeName}`);
         } catch (error) {

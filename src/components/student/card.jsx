@@ -1,18 +1,40 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { storage } from '../../firebase/firebase'; // Import Firebase Storage instance
 import './card.css';
 
 const MyCard = ({ uni }) => {
-    const navigate = useNavigate();
+    const [imageUrl, setImageUrl] = useState(null);
+
+    useEffect(() => {
+        const getImageUrl = async () => {
+            try {
+                // Construct path to the image in Firebase Storage
+                const imagePath = `collegeimages/${uni.imageUrl}`;
+
+                // Get download URL of the image
+                console.log(storage); // Log storage object for troubleshooting
+                const url = await storage.ref(imagePath).getDownloadURL();
+                setImageUrl(url);
+            } catch (error) {
+                console.error('Error getting image URL:', error);
+            }
+        };
+
+        getImageUrl();
+    }, [uni.imageUrl]);
 
     const handleClick = () => {
-        navigate(`/university-details/${uni.collegeId}`); // Navigate with collegeId
+        // Handle click action if needed
     };
 
     return (
         <div className="card" onClick={handleClick}>
             <div className="image-container">
-                <img className="image" src={uni.imageUrl} alt={uni.collegeName} />
+                {imageUrl ? (
+                    <img className="image" src={imageUrl} alt={uni.collegeName} />
+                ) : (
+                    <div>Loading image...</div>
+                )}
             </div>
             <div className="content">
                 <h1 className="title">{uni.collegeName || 'No Name Provided'}</h1>
