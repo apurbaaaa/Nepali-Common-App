@@ -50,8 +50,10 @@ const UniversityTable = () => {
                 collegeId: program.collegeId,  
                 location: program.location,
                 description: program.description,
-                startTerm: program.startTerm
+                startTerm: program.startTerm,
+                imageUrl: program.imageUrl
             });
+
             alert(`College added successfully: ${program.collegeName}`);
         } catch (error) {
             console.error("Error adding college to Student Colleges", error);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
-import { v4 as uuidv4 } from 'uuid'; // Import UUID
+import { v4 as uuidv4 } from 'uuid'; 
 import './UniversityPage.css';
 
 function UniversityDetails() {
@@ -30,13 +30,13 @@ function UniversityDetails() {
 
     const handleSubmit = async () => {
         try {
-            const studentQuery = query(collection(db, "studentdetails")); // Ensure correct collection name
+            const studentQuery = query(collection(db, "studentdetails")); 
             const studentSnapshot = await getDocs(studentQuery);
             console.log("Snapshot empty:", studentSnapshot.empty);
             console.log("Snapshot size:", studentSnapshot.size);
             if (!studentSnapshot.empty) {
                 studentSnapshot.forEach(async (doc) => {
-                    const uniqueStudentId = uuidv4(); // Generate a unique ID for each student application
+                    const uniqueStudentId = uuidv4(); 
                     await addDoc(collection(db, "studentApplications"), {
                         studentId: uniqueStudentId,
                         collegeId: collegeId,
@@ -58,8 +58,8 @@ function UniversityDetails() {
             {collegeDetails ? (
                 <div className="university-template">
                     <div className="university-image">
-                        {/* Update the src attribute to use imageUrl from collegeDetails */}
-                        <img src={collegeDetails.imageUrl} alt={collegeDetails.collegeName} />
+                        <img src={"https://firebasestorage.googleapis.com/v0/b/miniproject-d9f18.appspot.com/o/collegeimages%2FffCYDJnt25YAN4dn6ZsmWrGpl5f1_1714030391881_Lord%20Buddha%20Hd%20Images%20Wallpaper%20Pics%20Photos%20Greetings.jpeg?alt=media&token=f73fed58-51d8-4249-9884-10b77447d333"
+} alt={collegeDetails.collegeName} />
                     </div>
                     <div className="university-details">
                         <h2 className="university-name">{collegeDetails.collegeName}</h2>
