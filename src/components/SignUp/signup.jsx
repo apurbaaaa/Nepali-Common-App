@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import { auth, db } from '../../firebase/firebase'; // Ensure this path matches your project structure
-import '../styles/AuthPageStyles.css'; // Update the path as necessary for your styling
+import { auth, db } from '../../firebase/firebase'; 
+import '../styles/AuthPageStyles.css'; 
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -24,24 +24,21 @@ const SignUpPage = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       const userData = {
-        email: email, // User's email
-        role: role, // User's selected role
+        email: email, 
+        role: role, 
       };
 
-      // If the role is College, store the user's UID as collegeId
       if (role === "College") {
-        userData.collegeId = user.uid; // Storing UID as collegeId for colleges
+        userData.collegeId = user.uid; 
       }
 
-      // Store the user's data in Firestore
       await setDoc(doc(db, "users", user.uid), userData);
       
       console.log("User registered successfully with role:", role);
-      // Navigate based on the role
       if (role === "Student") {
-        navigate("/student-dashboard"); // Navigate to student dashboard
+        navigate("/student-dashboard"); 
       } else if (role === "College") {
-        navigate("/college-dashboard"); // Navigate to college dashboard
+        navigate("/college-dashboard"); 
       }
     } catch (error) {
       setError(error.message);

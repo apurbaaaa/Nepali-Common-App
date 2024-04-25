@@ -1,9 +1,9 @@
+//by Apurba Koirala and Aaryan Shrestha
 import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider } from './firebase/AuthContext'; // Make sure this import path is correct
+import { AuthProvider } from './firebase/AuthContext'; 
 
-// Component imports
 import Student from './components/student/student';
 import Login from './components/Login/login';
 import Signup from './components/SignUp/signup';
@@ -15,7 +15,7 @@ import SeeApplicationsPage from './components/College/seeApplications';
 
 function App() {
   return (
-    <AuthProvider> {/* Wrap all routes within AuthProvider */}
+    <AuthProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Navigate replace to="/login" />} />

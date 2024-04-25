@@ -68,6 +68,7 @@ function HandleApplication() {
     setCollegeName('');
     setLocation('');
     setDescription('');
+    setStartTerm('');
     setFile(null);
     document.getElementById('file').value = null; // Reset file input
   };

@@ -1,5 +1,3 @@
-/* UniversityPage.css */
-
 .university-container {
   display: flex;
   justify-content: center;
@@ -9,15 +7,15 @@
 
 .university-template {
   width: 100%;
-  max-width: 800px; /* Adjust max-width as needed */
+  max-width: 800px; 
   margin: 20px;
   display: flex;
-  flex-direction: column; /* Arrange children in a column */
+  flex-direction: column; 
 }
 
 .university-image {
   width: 100%;
-  max-height: 300px; /* Limit image height */
+  max-height: 300px; 
   overflow: hidden;
 }
 

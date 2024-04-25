@@ -58,7 +58,8 @@ function UniversityDetails() {
             {collegeDetails ? (
                 <div className="university-template">
                     <div className="university-image">
-                        <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaN3cTlAruwT7xMf4ILQovXUE63lPdfb8si0VhKm7qIA&s"} alt={collegeDetails.collegeName} />
+                        {/* Update the src attribute to use imageUrl from collegeDetails */}
+                        <img src={collegeDetails.imageUrl} alt={collegeDetails.collegeName} />
                     </div>
                     <div className="university-details">
                         <h2 className="university-name">{collegeDetails.collegeName}</h2>
