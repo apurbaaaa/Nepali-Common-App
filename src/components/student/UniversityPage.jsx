@@ -54,15 +54,19 @@ function UniversityDetails() {
     };
 
     return (
-        <div>
+        <div className="university-container">
             {collegeDetails ? (
-                <div>
-                    <h2>{collegeDetails.collegeName}</h2>
-                    <img src={collegeDetails.imageUrl} alt={collegeDetails.collegeName} />
-                    <p>{collegeDetails.description}</p>
-                    <p>{collegeDetails.location}</p>
-                    <p>Start term: {collegeDetails.startTerm}</p>
-                    <button onClick={handleSubmit}>Submit Application</button>
+                <div className="university-template">
+                    <div className="university-image">
+                        <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaN3cTlAruwT7xMf4ILQovXUE63lPdfb8si0VhKm7qIA&s"} alt={collegeDetails.collegeName} />
+                    </div>
+                    <div className="university-details">
+                        <h2 className="university-name">{collegeDetails.collegeName}</h2>
+                        <p className="detail">{collegeDetails.description}</p>
+                        <p className="detail">Location: <span className="value">{collegeDetails.location}</span></p>
+                        <p className="detail">Start Term: <span className="value">{collegeDetails.startTerm}</span></p>
+                        <button className="submit-button" onClick={handleSubmit}>Submit Application</button>
+                    </div>
                 </div>
             ) : (
                 <p>Loading details...</p>

@@ -28,40 +28,11 @@
   color: #333;
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
+.tr {
+  transition: transform 0.2s ease, background-color 0.3s ease; /* Add transition for transform and background color */
 }
 
-.table th,
-.table td {
-  padding: 0.75rem;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.table th {
-  font-weight: 500;
-  color: #333;
-}
-
-.table td {
-  color: #666;
-}
-
-.table tr:nth-child(even) {
-  background-color: #f5f5f5;
-}
-
-.table tr:hover {
-  background-color: #f9f9f9;
-}
-
-.table-row:hover {
-  background-color: #f9f9f9;
-  transition: background-color 0.3s ease;
+.tr:hover {
+  background-color: #f9f9f9; /* Change background color on hover */
+  transform: scale(1.02); /* Scale up the row slightly on hover */
 }
