@@ -1,4 +1,7 @@
-//by Apurba Koirala and Aaryan Shrestha
+//Shiksha Link by Apurba Koirala (22BCE3799) and Aaryan Shrestha (22BCE3781)
+//Nepali Common App
+
+
 import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
@@ -22,11 +25,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           
-          {/* User Dashboards */}
           <Route path="/student-dashboard" element={<Student />} />
           <Route path="/college-dashboard" element={<College />} />
 
-          {/* Additional Functionalities */}
           <Route path="/university-details/:collegeId" element={<UniversityPage />} />
           <Route path="/handle-applications" element={<HandleApplication />} />
           <Route path="/see-applications/:studentId" element={<SeeApplicationsPage />} />

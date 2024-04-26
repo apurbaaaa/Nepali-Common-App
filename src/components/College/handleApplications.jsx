@@ -70,7 +70,7 @@ function HandleApplication() {
     setDescription('');
     setStartTerm('');
     setFile(null);
-    document.getElementById('file').value = null; // Reset file input
+    document.getElementById('file').value = null;
   };
 
   const handleFileChange = (event) => {

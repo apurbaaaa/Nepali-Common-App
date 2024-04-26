@@ -66,7 +66,7 @@
     }
   }
   
-  /* Responsive styles */
+ 
   @media screen and (max-width: 768px) {
     .custom-card {
       max-width: 100%;

@@ -58,8 +58,7 @@ function UniversityDetails() {
             {collegeDetails ? (
                 <div className="university-template">
                     <div className="university-image">
-                        <img src={"https://firebasestorage.googleapis.com/v0/b/miniproject-d9f18.appspot.com/o/collegeimages%2FffCYDJnt25YAN4dn6ZsmWrGpl5f1_1714030391881_Lord%20Buddha%20Hd%20Images%20Wallpaper%20Pics%20Photos%20Greetings.jpeg?alt=media&token=f73fed58-51d8-4249-9884-10b77447d333"
-} alt={collegeDetails.collegeName} />
+                        <img src={collegeDetails.imageUrl} alt={collegeDetails.collegeName} />
                     </div>
                     <div className="university-details">
                         <h2 className="university-name">{collegeDetails.collegeName}</h2>

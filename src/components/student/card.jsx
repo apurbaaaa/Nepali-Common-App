@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import './card.css';
 
 const MyCard = ({ uni }) => {
-    const navigate = useNavigate(); // Hook to access the navigate function
+    const navigate = useNavigate(); 
 
     const handleClick = () => {
-        // Navigate to /university-details/:collegeId on click
         if (uni && uni.collegeId) {
             navigate(`/university-details/${uni.collegeId}`);
         }

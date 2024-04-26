@@ -18,9 +18,8 @@ const SeeApplicationsPage = () => {
         const querySnapshot = await getDocs(q);
 
         if (!querySnapshot.empty) {
-          // Extract studentDetails from the first document in the snapshot
           const docData = querySnapshot.docs[0].data();
-          setStudentDetails(docData.studentDetails); // Accessing studentDetails from the retrieved document
+          setStudentDetails(docData.studentDetails); 
         } else {
           console.log('No document found with studentId:', studentId);
         }
@@ -31,7 +30,7 @@ const SeeApplicationsPage = () => {
     };
 
     fetchStudentDetails();
-  }, [studentId]); // Dependency array ensures this effect runs when studentId changes
+  }, [studentId]); 
 
   const handleOpenMail = () => {
     if (studentDetails && studentDetails.email) {
@@ -49,7 +48,6 @@ const SeeApplicationsPage = () => {
     return <div>No student details found.</div>;
   }
 
-  // Render the student details
   return (
     <><br/><br/><br/><br/><div className="custom-card">
       <h1 className="custom-card-title">Student Details</h1>
@@ -65,7 +63,6 @@ const SeeApplicationsPage = () => {
         <p><strong>Father's Phone:</strong> {studentDetails.fatherPhone}</p>
         <p><strong>Mother's Name:</strong> {studentDetails.motherName}</p>
         <p><strong>Mother's Phone:</strong> {studentDetails.motherPhone}</p>
-        {/* Add more details as needed */}
         <button className="custom-card-button" onClick={handleOpenMail}>Open Mail</button>
       </div>
     </div></>
