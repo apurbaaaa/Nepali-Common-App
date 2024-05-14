@@ -22,6 +22,7 @@ const UniversityTable = () => {
                     imageUrl: doc.data().imageUrl,
                 }));
                 setPrograms(loadedPrograms);
+                
             } catch (error) {
                 console.error("Error fetching programs:", error);
             }
